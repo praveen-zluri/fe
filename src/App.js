@@ -14,7 +14,7 @@ function App() {
 			<div className="col-10 flex-column d-flex justify-content-between p-0" style={{ width: "90%" }}>
 				<TopNav />
 				<WorkFlowProcess />
-				<div class="flex-column">
+				<div className="flex-column">
 					<Prompt />
 					<Terminal />
 				</div>

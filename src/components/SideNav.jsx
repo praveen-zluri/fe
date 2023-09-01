@@ -7,14 +7,14 @@ const SideNav = () => {
 			<li className="nav-item text-center w-auto">
 				<img src={ZluriSVG} />
 			</li>
-			<ul className="nav flex-column p-2 row-gap-2 mt-2">
-				<li class="nav-item placeholder-glow">
+			<ul className="nav flex-column p-2 row-gap-2">
+				<li className="nav-item">
 					<PlaceHolder />
 				</li>
-				<li class="nav-item placeholder-glow">
+				<li className="nav-item">
 					<PlaceHolder />
 				</li>
-				<li class="nav-item placeholder-glow">
+				<li className="nav-item">
 					<PlaceHolder />
 				</li>
 			</ul>
