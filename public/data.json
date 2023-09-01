@@ -1,0 +1,15 @@
+[{
+"appName": "Slack",
+"action": "addUser",
+"status": "pending"
+
+},{
+"appName": "Jira",
+"action": "assignTicket",
+"status": "pending"
+
+},{
+    "appName": "Figma",
+    "action": "addBoard",
+    "status": "pending"
+}]
