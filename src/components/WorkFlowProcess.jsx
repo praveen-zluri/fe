@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Tick from "../static/tick.svg";
+import Coffee from "../static/coffee.webp";
+import Universe from "../static/universe.webp";
 
 const WorkFlowProcess = (props) => {
 	return (
@@ -29,49 +31,73 @@ const WorkFlow = (props) => {
 					</div>
 				</div>
 				<div className="col-5 d-flex flow-column justify-content-center align-items-center">
-					{/* <img src={Tick} style={{ height: "100px" }} /> */}
-					{/* <Loader /> */}
-					<div>
-						{/* <h1>Loading</h1> */}
-						<Typewriter inputText="khdksdskjfjknsdjk" />
-					</div>
+					<SuccessLoader />
 				</div>
 			</div>
 		</div>
 	);
 };
 
-function Loader() {
-	const loaderStyle = {
-		display: "inline-block",
-		width: "50px",
-		height: "50px",
-		border: "5px solid rgba(255, 255, 255, 0.3)", // Light gray
-		borderTop: "5px solid #000", // Black
-		borderRadius: "50%",
-		animation: "spin 1s linear infinite",
-	};
+function SuccessLoader() {
+	const [currentIndex, setCurrentIndex] = useState(0);
 
-	return <div style={loaderStyle}></div>;
-}
+	const loaderText = [
+		{
+			text: "Giving the AI its morning coffee...",
+			image: Coffee,
+		},
+		{
+			text: "Searching the multAIverse for available actions..",
+			image: Universe,
+		},
+	];
 
-function Typewriter({ inputText, typingSpeed = 100 }) {
-	const [displayedText, setDisplayedText] = useState("");
+	const typingSpeed = 150;
+	const pauseDuration = 1000; // 1 second pause after typing
+
+	// Calculate the time it takes to type out the current text
+	const currentTextDuration = loaderText[currentIndex].text.length * typingSpeed + pauseDuration;
 
 	useEffect(() => {
-		let index = 0;
-
 		const interval = setInterval(() => {
-			if (index < inputText.length) {
-				setDisplayedText((prevText) => prevText + inputText[index]);
-				index++;
-			} else {
-				clearInterval(interval);
-			}
-		}, typingSpeed);
+			setCurrentIndex((prevIndex) => (prevIndex + 1) % loaderText.length);
+		}, currentTextDuration);
 
 		return () => clearInterval(interval);
-	}, [inputText, typingSpeed]);
+	}, [currentIndex]);
+
+	const e = loaderText[currentIndex];
+
+	return (
+		<div className="d-flex flex-row justify-content-start align-items-center">
+			<img src={e.image} className="w-25 h-25" alt="Loader Image" />
+			<Typewriter inputText={e.text} typingSpeed={typingSpeed} />
+		</div>
+	);
+}
+
+function Typewriter({ inputText, typingSpeed = 100, pauseDuration = 1000 }) {
+	const [displayedText, setDisplayedText] = useState("");
+	const [index, setIndex] = useState(0);
+
+	useEffect(() => {
+		if (index < inputText.length) {
+			const timeout = setTimeout(() => {
+				setDisplayedText((prevText) => prevText + inputText[index]);
+				setIndex((prevIndex) => prevIndex + 1);
+			}, typingSpeed);
+
+			return () => clearTimeout(timeout);
+		} else {
+			// Once the entire text has been displayed, pause for a while and then reset to start over
+			const pauseTimeout = setTimeout(() => {
+				setDisplayedText("");
+				setIndex(0);
+			}, pauseDuration);
+
+			return () => clearTimeout(pauseTimeout);
+		}
+	}, [inputText, typingSpeed, index, pauseDuration]);
 
 	return <span>{displayedText}</span>;
 }
