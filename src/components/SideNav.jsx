@@ -7,14 +7,14 @@ const SideNav = () => {
 			<li className="nav-item text-center w-auto">
 				<img src={ZluriSVG} />
 			</li>
-			<ul className="nav flex-column p-2 row-gap-2">
-				<li class="nav-item">
+			<ul className="nav flex-column p-2 row-gap-2 mt-2">
+				<li class="nav-item placeholder-glow">
 					<PlaceHolder />
 				</li>
-				<li class="nav-item">
+				<li class="nav-item placeholder-glow">
 					<PlaceHolder />
 				</li>
-				<li class="nav-item">
+				<li class="nav-item placeholder-glow">
 					<PlaceHolder />
 				</li>
 			</ul>
@@ -24,7 +24,7 @@ const SideNav = () => {
 
 function PlaceHolder() {
 	return (
-		<div className="w-100 bg-primary-subtle rounded p-1">
+		<div className="w-100 bg-primary-subtle rounded p-1 placeholder">
 			<div className="opacity-0">Example</div>
 		</div>
 	);
