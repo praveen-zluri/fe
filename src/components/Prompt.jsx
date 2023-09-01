@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-// import data from '../../public/data.json'
 
 const Prompt = () => {
 	const [prompt, setPrompt] = useState("");

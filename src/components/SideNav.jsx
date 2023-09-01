@@ -8,13 +8,13 @@ const SideNav = () => {
 				<img src={ZluriSVG} />
 			</li>
 			<ul className="nav flex-column p-2 row-gap-2">
-				<li class="nav-item">
+				<li className="nav-item">
 					<PlaceHolder />
 				</li>
-				<li class="nav-item">
+				<li className="nav-item">
 					<PlaceHolder />
 				</li>
-				<li class="nav-item">
+				<li className="nav-item">
 					<PlaceHolder />
 				</li>
 			</ul>
